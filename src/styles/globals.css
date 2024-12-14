@@ -19,3 +19,96 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.dec-ball1 {
+  top: 18%;
+  left: 32%;
+}
+
+.dec-ball2 {
+  top: 30%;
+  left: 50%;
+}
+
+.dec-starsmile {
+  top: 52%;
+  left: 60%;
+}
+
+.dec-topstar {
+  top: -7%;
+  left: 37%;
+}
+.dec-shining {
+  top: -7%;
+  left: 37%;
+  animation: shining 0.8s infinite ease-in-out;
+}
+
+.dec-gift {
+  /* 禮物的位置 (相對於樹) */
+  top: 45%;
+  left: 20%;
+}
+
+.closeBtn {
+  top: -7%;
+  left: 95.5%;
+}
+
+.letterContent {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  color: rgb(28, 0, 72);
+  display: "inline-block";
+  white-space: normal; /* 支援換行 */
+  word-wrap: break-word; /* 長字自動換行 */
+  overflow-wrap: break-word; /* 防止過長內容溢出 */
+}
+
+.word {
+  display: inline-block; /* 逐字計算 */
+  animation: colorChange 0.2s ease forwards;
+  animation-fill-mode: forwards;
+}
+
+.blinkingCursor {
+  display: inline-block; /* 逐字計算 */
+  border-right: .05em solid;
+  animation: blink 0.5s infinite normal;
+  margin-left: -1px; /* 避免與文字重疊 */
+}
+
+@keyframes colorChange {
+  0% {
+    color: transparent;
+  }
+  100% {
+    color: rgb(28, 0, 72); /* 最終字體顏色 */
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes shining {
+  0% {
+    scale: 85%;
+  }
+  100% {
+    scale: 115%;
+  }
+}
+
+.perspective-container {
+  perspective: 900px; /* 定義 3D 視角距離 */
+}
+
+.door-open {
+  transform: rotate3d(0, 1, 0, 120deg);
+}
