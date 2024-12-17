@@ -5,6 +5,10 @@ export default function handler(req, res) {
 
   const { password } = req.body
 
+  const userIP = req.headers["x-forwarded-for"] || req.socket.remoteAddress
+
+  console.log(`Password attempt from IP: ${userIP}, Password: ${password}`)
+
   if (!password || typeof password !== "string") {
     return res.status(400).json({ message: "你要輸入啊。。。" })
   }
