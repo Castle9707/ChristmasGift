@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import LetterAnimation from "./letterAnimation"
 import Door from "./door"
 import Tree from "./tree"
@@ -14,6 +15,20 @@ export default function Room() {
   const [message, setMessage] = useState("") // 我給的愛
   const [isSubmitted, setIsSubmitted] = useState(false) // 表單顯示
   const [inputType, setInputType] = useState("password") // 表單輸入框型態
+  const [snowLevel, setSnowLevel] = useState(0) // 下雪階段
+
+  // 定義每個 snowLevel 對應的高度值（單位 px）
+  const snowHeights = [1, 16, 32, 64, 96] // 最小高度為 1 確保平滑過渡
+  // 初始化雪花數據，只生成一次
+  const snowflakesRef = useRef(
+    Array.from({ length: 50 }).map(() => ({
+      left: Math.random() * 100, // 隨機水平位置 (0-100%)
+      size: Math.random() * 5 + 3, // 隨機雪花大小 (3px - 8px)
+      delay: Math.random() * 5, // 隨機延遲時間 (0s - 5s)
+      duration: Math.random() * 5 + 5, // 隨機下落持續時間 (5s - 10s)
+      opacity: Math.random() * 0.8 + 0.2, // 隨機透明度 (0.2 - 1)
+    }))
+  )
 
   const audioRef = useRef(null) // 參考 audio 元素
 
@@ -26,6 +41,12 @@ export default function Room() {
   // 點亮爐火
   const handleLightOn = () => {
     setLightOn(!isLightOn)
+  }
+
+  // 下雪狀態
+  const handleSnow = () => {
+    setSnowLevel((prev) => (prev < 4 ? prev + 1 : 0)) // 第四次重置
+    window.navigator.vibrate(200) // 手機震動
   }
 
   // 播放音樂
@@ -98,6 +119,7 @@ export default function Room() {
           afterDoorOpen={afterDoorOpen}
           onFire={handleLightOn}
           isLightOn={isLightOn}
+          handleSnow={handleSnow}
         />
 
         {/* 音樂播放 */}
@@ -168,6 +190,49 @@ export default function Room() {
             </button>
           </div>
         )}
+
+        {/* 下雪動畫 */}
+        {snowLevel > 0 && (
+          <div className="absolute inset-0 pointer-events-none">
+            {snowflakesRef.current.map((snowflake, i) => (
+              <div
+                key={i}
+                className="snowflake z-20"
+                style={{
+                  left: `${snowflake.left}%`,
+                  width: `${snowflake.size}px`,
+                  height: `${snowflake.size}px`,
+                  animationDelay: `${snowflake.delay}s`,
+                  animationDuration: `${snowflake.duration}s`,
+                  opacity: snowflake.opacity,
+                }}
+              ></div>
+            ))}
+          </div>
+        )}
+
+        {/* 累積的雪 */}
+        <div className="absolute -bottom-1 w-full flex justify-center">
+          {snowLevel >= 0 && (
+            <div
+              className={`w-full h-16 bg-white transition-all duration-2000`}
+              style={{
+                height: `${snowHeights[snowLevel]}px`, // 將高度用 px 表示
+              }}
+            ></div>
+          )}
+          {snowLevel === 4 && (
+            <div className="absolute left-10 bottom-20">
+              <Image
+                src="/image/snowman.png"
+                alt="snowman"
+                width={200}
+                height={577}
+                className="w-32 h-32 animate-bounce"
+              />
+            </div>
+          )}
+        </div>
       </div>
     </>
   )

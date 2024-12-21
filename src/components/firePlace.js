@@ -1,6 +1,11 @@
 import Image from "next/image"
 
-export default function FirePlace({ afterDoorOpen, onFire, isLightOn }) {
+export default function FirePlace({
+  afterDoorOpen,
+  onFire,
+  isLightOn,
+  handleSnow,
+}) {
   return (
     <>
       <div
@@ -14,8 +19,8 @@ export default function FirePlace({ afterDoorOpen, onFire, isLightOn }) {
           priority
           className="fireplace"
         />
+        <button className="fireBtn mx-5 z-20" onClick={onFire}></button>
         {/* 火 點擊後出現 */}
-        <button className="fireBtn z-10" onClick={onFire}></button>
         {isLightOn && (
           <>
             <div className="flame-wrapper">
@@ -25,10 +30,21 @@ export default function FirePlace({ afterDoorOpen, onFire, isLightOn }) {
             <div className="light02 bg-amber-600/30"></div>
           </>
         )}
+        {/* 水晶球，點擊下雪 */}
+        <button className="crystalball absolute" onClick={handleSnow}>
+          <Image
+            src="/image/crystalball.png"
+            alt="crystalball"
+            width={50}
+            height={56}
+            priority
+            className="absolute top-0 left-0"
+          />
+        </button>
       </div>
 
       {/* 地板色塊 */}
-      <div className="floor absolute bg-orange-900 w-full h-full z-0"></div>
+      <div className="floor absolute bg-orange-950 w-full h-full z-0"></div>
     </>
   )
 }

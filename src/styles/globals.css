@@ -58,6 +58,25 @@ body {
   left: 95.5%;
 }
 
+.crystalball {
+  top: 255px;
+  left: 45px;
+  width: 60px;
+  height: 60px;
+}
+.crystalball:hover {
+  transform-origin: bottom;
+  animation: shakingBall 0.5s ease forwards;
+}
+
+@keyframes shakingBall {
+  0% {transform: rotate( -10deg );}
+  25%{transform: rotate( 10deg );}
+  50% {transform: rotate( -5deg ) translateY(-10px);}
+  75% {transform: rotate( 5deg );}
+  100% {transform: rotate( 0deg ) translateY(0);}
+}
+
 /* 信件動畫特效 */
 .letterContent {
   font-size: 1rem;
@@ -162,8 +181,9 @@ body {
   position: absolute;
   top: 430px;
   left: 109px;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  color: #222733;
   cursor: pointer;
 }
 
@@ -174,4 +194,25 @@ body {
 
 .door-open {
   transform: rotate3d(0, 1, 0, 120deg);
+}
+
+/* 下雪 */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg); /* 下落並旋轉 */
+  }
+}
+
+.snowflake {
+  position: absolute;
+  top: -10%; /* 從畫面頂端開始下落 */
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

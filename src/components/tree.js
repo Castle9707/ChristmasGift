@@ -11,8 +11,8 @@ export default function Tree({ afterDoorOpen, handleClick }) {
         <Image
           src="/image/tree.png"
           alt="tree"
-          width={400}
-          height={549}
+          width={360}
+          height={494}
           priority
           className="tree"
         />
@@ -21,21 +21,21 @@ export default function Tree({ afterDoorOpen, handleClick }) {
           alt="ball1"
           width={40}
           height={66}
-          className="absolute dec-ball1 hover:rotate-6 active:rotate-6 origin-top"
+          className="absolute dec-ball1 origin-top hover:animate-wiggle-02 active:animate-wiggle-02"
         />
         <Image
           src="/image/ball2.png"
           alt="ball2"
           width={40}
           height={66}
-          className="absolute dec-ball2 hover:rotate-6 active:rotate-6 origin-top"
+          className="absolute dec-ball2 origin-top hover:animate-wiggle-02 active:animate-wiggle-02"
         />
         <Image
           src="/image/starsmile.png"
           alt="starsmile"
           width={50}
           height={89}
-          className="absolute dec-starsmile hover:rotate-6  active:rotate-6 origin-top"
+          className="absolute dec-starsmile origin-top  hover:animate-wiggle-02 active:animate-wiggle-02"
         />
         <Image
           src="/image/topstar.png"
@@ -58,7 +58,7 @@ export default function Tree({ afterDoorOpen, handleClick }) {
             alt="gift"
             width={60}
             height={56}
-            className="absolute rotate-12 dec-gift hover:rotate-6 active:rotate-6"
+            className="absolute rotate-12 dec-gift hover:animate-wiggle-01 active:animate-wiggle-01"
           />
         </div>
       </div>
