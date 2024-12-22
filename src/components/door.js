@@ -3,7 +3,7 @@ export default function Door({ isDoorOpen, handleOpenDoor }) {
     <>
       {/* 開門時陰影 */}
       <div
-        className={`absolute z-10 inset-0 transition-colors duration-[5000ms] ${
+        className={`absolute z-10 inset-0 transition-colors duration-5000 ${
           isDoorOpen ? "bg-transparent" : "bg-black"
         }`}
       ></div>

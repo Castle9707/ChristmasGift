@@ -4,6 +4,7 @@ import LetterAnimation from "./letterAnimation"
 import Door from "./door"
 import Tree from "./tree"
 import FirePlace from "./firePlace"
+import Candy from "./candy"
 
 export default function Room() {
   const [isDoorOpen, setDoorOpen] = useState(false) // 門是否被打開
@@ -16,6 +17,7 @@ export default function Room() {
   const [isSubmitted, setIsSubmitted] = useState(false) // 表單顯示
   const [inputType, setInputType] = useState("password") // 表單輸入框型態
   const [snowLevel, setSnowLevel] = useState(0) // 下雪階段
+  const [candies, setCandies] = useState([]) // 糖果紀錄
 
   // 定義每個 snowLevel 對應的高度值（單位 px）
   const snowHeights = [1, 16, 32, 64, 96] // 最小高度為 1 確保平滑過渡
@@ -35,12 +37,33 @@ export default function Room() {
   // 開門
   const handleOpenDoor = () => {
     setDoorOpen(true)
+    window.navigator.vibrate(200) // 手機震動
     playMusic()
   }
 
   // 點亮爐火
   const handleLightOn = () => {
     setLightOn(!isLightOn)
+  }
+
+  // 點襪子掉糖果
+  const dropCandy = (sockLeft) => {
+    // 生成一個隨機糖果
+    const newCandy = {
+      id: Date.now(),
+      left: sockLeft, // 從不同襪子點擊的起始位置
+      endX: Math.random() * 300 - 120, // 隨機終點 (-120  ~ 180 px)
+      rotation: Math.random() * 360, // 隨機旋轉角度
+      top: 200, // 襪子高度＝起始高度
+      image: Math.floor(Math.random() * 9 + 1), // 隨機一種糖果圖片
+    }
+
+    setCandies((prev) => [...prev, newCandy])
+
+    // 7秒後移除糖果
+    setTimeout(() => {
+      setCandies((prev) => prev.filter((candy) => candy.id !== newCandy.id))
+    }, 7000)
   }
 
   // 下雪狀態
@@ -110,7 +133,7 @@ export default function Room() {
 
   return (
     <>
-      <div className="room relative w-screen max-w-md h-screen max-h-[100dvh] mx-auto overflow-hidden bg-orange-200 perspective-container">
+      <div className="room relative w-screen max-w-md h-screen min-h-md max-h-[100dvh] mx-auto overflow-hidden bg-orange-200 perspective-container">
         {/* 門 */}
         <Door isDoorOpen={isDoorOpen} handleOpenDoor={handleOpenDoor} />
 
@@ -120,7 +143,13 @@ export default function Room() {
           onFire={handleLightOn}
           isLightOn={isLightOn}
           handleSnow={handleSnow}
+          dropCandy={dropCandy}
         />
+
+        {/* 掉落的糖果 */}
+        {candies.map((candy) => (
+          <Candy key={candy.id} candy={candy} />
+        ))}
 
         {/* 音樂播放 */}
         <audio ref={audioRef} src="/audio/bathroom-chill-14977.mp3" loop />
@@ -215,24 +244,26 @@ export default function Room() {
         <div className="absolute -bottom-1 w-full flex justify-center">
           {snowLevel >= 0 && (
             <div
-              className={`w-full h-16 bg-white transition-all duration-2000`}
+              className={`w-full h-16 bg-white transition-all duration-5000`}
               style={{
                 height: `${snowHeights[snowLevel]}px`, // 將高度用 px 表示
               }}
             ></div>
           )}
-          {snowLevel === 4 && (
-            <div className="absolute left-10 bottom-20">
-              <Image
-                src="/image/snowman.png"
-                alt="snowman"
-                width={200}
-                height={577}
-                className="w-32 h-32 animate-bounce"
-              />
-            </div>
-          )}
         </div>
+
+        {/* 雪人 */}
+        {snowLevel === 4 && (
+          <div className="absolute left-10 bottom-16 z-20">
+            <Image
+              src="/image/snowman.png"
+              alt="snowman"
+              width={200}
+              height={577}
+              className="w-32 h-32 animate-bounce"
+            />
+          </div>
+        )}
       </div>
     </>
   )

@@ -5,11 +5,12 @@ export default function FirePlace({
   onFire,
   isLightOn,
   handleSnow,
+  dropCandy,
 }) {
   return (
     <>
       <div
-        className={`absolute -left-1 -top-9 ${afterDoorOpen ? "z-10" : "z-0"}`}
+        className={`absolute -left-1 -top-28 ${afterDoorOpen ? "z-10" : "z-0"}`}
       >
         <Image
           src="/image/fireplace.png"
@@ -19,8 +20,36 @@ export default function FirePlace({
           priority
           className="fireplace"
         />
-        <button className="fireBtn mx-5 z-20" onClick={onFire}></button>
+        {/* 聖誕襪 */}
+        <Image
+          src="/image/socks.png"
+          alt="socks"
+          width={56}
+          height={56}
+          priority
+          onClick={() => dropCandy(50)}
+          className="socks-01 absolute origin-top-right -rotate-30 cursor-pointer hover:animate-wiggle-03 active:animate-wiggle-03"
+        />
+        <Image
+          src="/image/socks.png"
+          alt="socks"
+          width={56}
+          height={56}
+          priority
+          onClick={() => dropCandy(120)}
+          className="socks-02 absolute origin-top-right -rotate-30 cursor-pointer hover:animate-wiggle-03 active:animate-wiggle-03"
+        />
+        <Image
+          src="/image/socks.png"
+          alt="socks"
+          width={56}
+          height={56}
+          priority
+          onClick={() => dropCandy(190)}
+          className="socks-03 absolute origin-top-right -rotate-30 cursor-pointer hover:animate-wiggle-03 active:animate-wiggle-03"
+        />
         {/* 火 點擊後出現 */}
+        <button className="fireBtn mx-5 z-20" onClick={onFire}></button>
         {isLightOn && (
           <>
             <div className="flame-wrapper">

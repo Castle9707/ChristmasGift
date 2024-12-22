@@ -33,8 +33,8 @@ export default function Tree({ afterDoorOpen, handleClick }) {
         <Image
           src="/image/starsmile.png"
           alt="starsmile"
-          width={50}
-          height={89}
+          width={45}
+          height={80}
           className="absolute dec-starsmile origin-top  hover:animate-wiggle-02 active:animate-wiggle-02"
         />
         <Image
