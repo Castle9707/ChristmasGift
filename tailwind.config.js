@@ -15,9 +15,14 @@ module.exports = {
         30: "30deg",
       },
       transitionDuration: {
+        1500: "1500ms",
         2000: "2000ms",
         5000: "5000ms",
         10000: "10000ms",
+      },
+      transitionDelay: {
+        1500: "1500ms",
+        2000: "2000ms",
       },
       animation: {
         "wiggle-01": "wiggle01 0.5s ease-in-out 1",
