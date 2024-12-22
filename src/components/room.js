@@ -37,7 +37,7 @@ export default function Room() {
   // 開門
   const handleOpenDoor = () => {
     setDoorOpen(true)
-    window.navigator.vibrate(200) // 手機震動
+    // window.navigator.vibrate(200) // 手機震動 only for android
     playMusic()
   }
 
@@ -69,13 +69,15 @@ export default function Room() {
   // 下雪狀態
   const handleSnow = () => {
     setSnowLevel((prev) => (prev < 4 ? prev + 1 : 0)) // 第四次重置
-    window.navigator.vibrate(200) // 手機震動
+    // window.navigator.vibrate(200) // 手機震動
   }
 
   // 播放音樂
   const playMusic = () => {
     if (audioRef.current) {
-      audioRef.current.play()
+      audioRef.current.play().catch((err) => {
+        console.error("音樂播放失敗：", err)
+      })
     }
   }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Image from "next/image"
 
 export default function LetterAnimation({ letterMessage }) {
   const [displayedText, setDisplayedText] = useState("") // 當前顯示文字
@@ -26,17 +27,31 @@ export default function LetterAnimation({ letterMessage }) {
             className="word"
             style={{
               borderRight:
-                i === displayedText.length - 1 && !isComplete // 光標顯示在最後一個已顯示字母旁
+                i === displayedText.length - 1 && !isComplete // 光標顯示在最後一個已顯示文字旁
                   ? "0.05em solid"
-                  : "none", // 光標只顯示在當前字母旁
+                  : "none", // 光標只顯示在當前文字旁
             }}
           >
             {char}
           </span>
         ))}
-        {/* 當所有字母完成後，添加無限閃爍的光標 */}
+        {/* 當所有文字完成後，添加無限閃爍的光標 */}
         {isComplete && <span className="blinkingCursor">☃</span>}
       </p>
+      {/* 當所有文字完成後，添加簽名圖片 */}
+      <div
+        className={`flex justify-end transition-all duration-2000 ${
+          isComplete ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <Image
+          src="/image/sign.png"
+          alt="sign"
+          width={40}
+          height={66}
+          className="mt-2 w-16"
+        />
+      </div>
     </>
   )
 }
