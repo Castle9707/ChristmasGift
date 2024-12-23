@@ -11,8 +11,8 @@ export default function Tree({ afterDoorOpen, handleClick }) {
         <Image
           src="/image/tree.png"
           alt="tree"
-          width={360}
-          height={494}
+          width={320}
+          height={439}
           priority
           className="tree"
         />

@@ -42,7 +42,7 @@ export default function Door({ isDoorOpen, handleOpenDoor }) {
         {/* 綠色便利貼 > 點擊後放大 */}
         <div
           onClick={handleSizeGreen}
-          className={`absolute left-1/3 top-1/3 -translate-y-1/2 origin-center drop-shadow-2xl cursor-pointer transition-all duration-1000 overflow-hidden ${
+          className={`absolute left-1/3 top-1/3 -translate-x-1/2 -translate-y-1/2 origin-center drop-shadow-2xl cursor-pointer transition-all duration-1000 overflow-hidden ${
             isClickGreen
               ? "h-32 w-32 p-4 z-10 bg-lime-200"
               : "h-16 w-16 p-2 bg-gradient-to-br from-lime-200 to-lime-200/60"
@@ -53,13 +53,13 @@ export default function Door({ isDoorOpen, handleOpenDoor }) {
               isClickGreen ? "opacity-100" : "opacity-0"
             }`}
           >
-            {isClickGreen ? "- 房間有播音樂" : ""}
+            {isClickGreen ? "音樂忘了關。。。" : ""}
           </p>
         </div>
         {/* 粉色便利貼 > 點擊後放大 */}
         <div
           onClick={handleSizePink}
-          className={`absolute top-1/4 inset-x-1/2 origin-center drop-shadow-2xl cursor-pointer transition-all duration-1000 overflow-hidden ${
+          className={`absolute top-1/4 left-1/2 translate-x-1/3 -translate-y-1/2 origin-center drop-shadow-2xl cursor-pointer transition-all duration-1000 overflow-hidden ${
             isClickPink
               ? "h-32 w-32 p-4 z-10 bg-red-300"
               : "h-16 w-16 p-2 bg-gradient-to-br from-red-300 to-red-300/60"
@@ -70,13 +70,13 @@ export default function Door({ isDoorOpen, handleOpenDoor }) {
               isClickPink ? "opacity-100" : "opacity-0"
             }`}
           >
-            {isClickPink ? "- 啊啊啊啊啊" : ""}
+            {isClickPink ? "要敲門吧？" : ""}
           </p>
         </div>
         {/* 藍色便利貼 > 點擊後放大 */}
         <div
           onClick={handleSizeBlue}
-          className={`absolute top-1/4 inset-x-1/2 translate-y-20 origin-center drop-shadow-2xl cursor-pointer transition-all duration-1000 overflow-hidden ${
+          className={`absolute top-1/4 left-1/2 translate-y-32 origin-center drop-shadow-2xl cursor-pointer transition-all duration-1000 overflow-hidden ${
             isClickBlue
               ? "h-32 w-32 p-4 z-10 bg-blue-300"
               : "h-16 w-16 p-2 bg-gradient-to-br from-blue-300 to-blue-300/60"
@@ -87,7 +87,7 @@ export default function Door({ isDoorOpen, handleOpenDoor }) {
               isClickBlue ? "opacity-100" : "opacity-0"
             }`}
           >
-            {isClickBlue ? "- 帶鑰匙" : ""}
+            {isClickBlue ? "帶鑰匙了嗎？" : ""}
           </p>
         </div>
       </div>

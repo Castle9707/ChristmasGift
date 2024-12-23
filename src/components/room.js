@@ -5,6 +5,7 @@ import Door from "./door"
 import Tree from "./tree"
 import FirePlace from "./firePlace"
 import Candy from "./candy"
+import ReverseClock from "./reverseClock"
 
 export default function Room() {
   const [isDoorOpen, setDoorOpen] = useState(false) // 門是否被打開
@@ -148,6 +149,9 @@ export default function Room() {
           dropCandy={dropCandy}
         />
 
+        {/* 時鐘 */}
+        <ReverseClock />
+
         {/* 掉落的糖果 */}
         {candies.map((candy) => (
           <Candy key={candy.id} candy={candy} />
@@ -187,11 +191,11 @@ export default function Room() {
                     type={inputType}
                     placeholder="✧･ﾟ*你的通關密語*･ﾟ✧"
                     value={password}
-                    className="px-4 py-2 me-2 text-orange-300 rounded-full outline-orange-300"
+                    className="px-4 py-2 me-2 text-sm text-orange-300 rounded-full outline-orange-300"
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <span
-                    className="px-3 py-2.5 rounded-full border border-white text-white cursor-pointer"
+                    className="px-2.5 py-2 rounded-full border border-white text-white cursor-pointer"
                     onClick={handleTypeChange}
                   >
                     {inputType === "password" ? (
@@ -201,7 +205,7 @@ export default function Room() {
                     )}
                   </span>
                 </div>
-                <button className="px-6 py-1.5 w-fit rounded-full bg-orange-600 text-white">
+                <button className="px-6 py-1.5 w-fit rounded-full bg-orange-600  text-sm text-white">
                   送出
                 </button>
               </form>

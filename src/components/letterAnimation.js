@@ -36,7 +36,7 @@ export default function LetterAnimation({ letterMessage }) {
           </span>
         ))}
         {/* 當所有文字完成後，添加無限閃爍的光標 */}
-        {isComplete && <span className="blinkingCursor">☃</span>}
+        {isComplete && <span className="blinkingCursor">&nbsp;☃</span>}
       </p>
       {/* 當所有文字完成後，添加簽名圖片 */}
       <div

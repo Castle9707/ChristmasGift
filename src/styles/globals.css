@@ -22,8 +22,8 @@ body {
 
 /* 裝飾物位置 */
 .dec-ball1 {
-  top: 18%;
-  left: 32%;
+  top: 17%;
+  left: 33%;
 }
 .dec-ball2 {
   top: 30%;
@@ -34,18 +34,18 @@ body {
   left: 54%;
 }
 .dec-topstar {
-  top: -7%;
-  left: 37%;
+  top: -8%;
+  left: 35%;
 }
 .dec-shining {
-  top: -7%;
-  left: 37%;
+  top: -8%;
+  left: 35%;
   animation: shining 0.8s infinite ease-in-out;
 }
 .dec-gift {
   /* 禮物的位置 (相對於樹) */
   top: 45%;
-  left: 20%;
+  left: 18%;
 }
 
 .floor {
