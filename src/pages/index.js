@@ -6,6 +6,10 @@ export default function Home() {
     <>
       <Head>
         <title>嗨，請進｜城</title>
+        <meta
+          property="og:image"
+          content="https://castles-gift.vercel.app/image/snowman.png"
+        />
       </Head>
       <Room />
     </>
